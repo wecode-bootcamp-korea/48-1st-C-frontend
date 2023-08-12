@@ -1,18 +1,18 @@
 import React from 'react';
 import './Feed.scss';
 
-const Feed = () => {
+const Feed = ({ feedData }) => {
   return (
     <div className="feed">
       <div className="feedProfileBox">
         <div className="feedProfileBoxLeft">
           <img
             className="profileImg"
-            src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=800&q=60"
+            src={feedData.userImage}
             alt="프로필 이미지"
           />
           <p className="userName">
-            <b>이인재</b>
+            <b>{feedData.userName}</b>
           </p>
         </div>
         <div className="feedProfileBoxRight">
@@ -21,12 +21,7 @@ const Feed = () => {
         </div>
       </div>
       <div className="feedContentBox">
-        <p className="feedContent">
-          일라이자 효과는 인간의 사고 과정과 감정을 AI 시스템에 잘못 돌리는
-          사람들의 경향을 말하며, 따라서 시스템이 실제보다 더 지능적이라고
-          믿는다. 이 현상은 1966년 MIT 교수 조셉 웨이젠바움이 만든 챗봇인
-          ELIZA의 이름을 따서 명명되었다.
-        </p>
+        <p className="feedContent">{feedData.feedContent}</p>
       </div>
       <div className="feedDescriptionBox">
         <div className="feedDescriptionTop">
