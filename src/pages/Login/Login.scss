@@ -1,0 +1,111 @@
+@import '../../style/variables.scss';
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  .logingLogo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex: 1 0 0;
+    align-self: stretch;
+    margin: 10% auto;
+
+    img {
+      &:first-child {
+        width: 15vw;
+      }
+      &:last-child {
+        width: 20vw;
+      }
+    }
+  }
+  .loginForm {
+    display: flex;
+    padding: 0px 24px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    align-self: stretch;
+
+    .loginInput {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      input {
+        display: flex;
+        height: 56px;
+        border: 1px solid $grey60;
+        border-radius: 6px;
+        padding: 17px 16px;
+        align-items: center;
+        align-self: stretch;
+        font-family: Apple SD Gothic Neo;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 22px;
+      }
+    }
+    .loginButton {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      button {
+        display: flex;
+        height: 56px;
+        justify-content: center;
+        align-items: center;
+        align-self: stretch;
+        border-radius: 6px;
+        background: $blue;
+        border: 1px solid $blue;
+
+        font-family: Apple SD Gothic Neo;
+        font-size: 18px;
+        font-weight: 800;
+        color: white;
+      }
+    }
+  }
+
+  .loginOption {
+    display: flex;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    a {
+      &:first-child {
+        width: 50%;
+        border-right: 1px solid $grey88;
+        text-align: center;
+        color: $black;
+        font-family: Apple SD Gothic Neo;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+      &:last-child {
+        width: 50%;
+        border-left: 1px solid $grey88;
+        padding-left: 20px;
+        text-align: center;
+        color: $black;
+        font-family: Apple SD Gothic Neo;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+      }
+    }
+  }
+}
