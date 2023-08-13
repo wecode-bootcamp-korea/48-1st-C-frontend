@@ -21,7 +21,6 @@ const PostList = () => {
   const handleRemove = targetId => {
     const newList = feedsData.filter(data => data.id !== targetId);
     setFeedsData(newList);
-    if (newList.length === 0) return <p>게시글이 없습니다.</p>;
   };
 
   return (
