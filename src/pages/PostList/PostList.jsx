@@ -14,16 +14,34 @@ const PostList = () => {
     })
       .then(res => res.json())
       .then(data => setFeedsData(data));
-  });
+  }, []);
+
+  const noListMessage = '게시글이 없습니다.';
+
+  const handleRemove = targetId => {
+    const newList = feedsData.filter(data => data.id !== targetId);
+    setFeedsData(newList);
+    if (newList.length === 0) return <p>게시글이 없습니다.</p>;
+  };
 
   return (
     <div className="postListContainer">
       <div className="postListContentContainer">
         <div className="feedContainer">
           <div className="feedContentContainer">
-            {feedsData.map((feedData, index) => (
-              <Feed key={index} feedData={feedData} />
-            ))}
+            {feedsData.length === 0 ? (
+              <p>{noListMessage}</p>
+            ) : (
+              <>
+                {feedsData.map((feedData, index) => (
+                  <Feed
+                    key={index}
+                    feedData={feedData}
+                    handleRemove={handleRemove}
+                  />
+                ))}
+              </>
+            )}
           </div>
         </div>
         <div className="btnBox">

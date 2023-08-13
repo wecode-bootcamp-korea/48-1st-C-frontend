@@ -3,24 +3,28 @@
     "id": 0,
     "userImage": "https://ca.slack-edge.com/TH0U6FBTN-U05CNSZS4ET-02b82fbf4c55-512",
     "userName": "이인재",
+    "date": 1689087600000,
     "feedContent": "일라이자 효과는 인간의 사고 과정과 감정을 AI 시스템에 잘못 돌리는 사람들의 경향을 말하며, 따라서 시스템이 실제보다 더 지능적이라고 믿는다. 이 현상은 1966년 MIT 교수 조셉 웨이젠바움이 만든 챗봇인 ELIZA의 이름을 따서 명명되었다."
   },
   {
     "id": 1,
     "userImage": "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjF8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
     "userName": "John",
+    "date": 1686495600000,
     "feedContent": "일라이자 효과는 컴퓨터 과학에서, 무의식적으로 컴퓨터의 행위를 인간의 행위와 유사한 것으로 추정하고 의인화하는 경향이다."
   },
   {
     "id": 2,
     "userImage": "https://images.unsplash.com/photo-1552058544-f2b08422138a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyc29ufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60",
     "userName": "Julia",
+    "date": 1691830007441,
     "feedContent": "성별과 성격과 같은 인간의 특성을 AI 음성 비서에게 돌리기"
   },
   {
     "id": 3,
     "userImage": "https://images.unsplash.com/photo-1500048993953-d23a436266cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fHBlcnNvbnxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
     "userName": "pliossun",
+    "date": 1676127600000,
     "feedContent": "성별과 성격과 같은 인간의 특성을 AI 음성 비서에게 돌리기"
   }
 ]
