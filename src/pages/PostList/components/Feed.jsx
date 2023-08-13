@@ -40,7 +40,7 @@ const Feed = ({ feedData, handleRemove }) => {
           </button>
         </div>
       </div>
-      {hideFeedContent && (
+      {!hideFeedContent && (
         <>
           <div className="feedContentBox">
             <p className="feedContent">{feedData.content}</p>
