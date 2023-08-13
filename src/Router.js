@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PostList from './pages/PostList/PostList';
 import Login from './pages/Login/Login';
-import Join from './pages/Join/Join';
+import JoinInfo from './pages/Join/JoinInfo';
+import JoinDone from './pages/Join/JoinDone';
 
 const Router = () => {
   return (
@@ -10,7 +11,8 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/join" element={<Join />} />
+        <Route path="/join-info" element={<JoinInfo />} />
+        <Route path="/join-done" element={<JoinDone />} />
         <Route path="/post-list" element={<PostList />} />
       </Routes>
     </BrowserRouter>

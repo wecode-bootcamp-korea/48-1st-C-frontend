@@ -5,9 +5,9 @@ import Birthday from './Birthday';
 import LoginButton from '../Login/components/LoginButton';
 import './Join.scss';
 
-export default function Join() {
+export default function JoinInfo() {
   return (
-    <div className="join">
+    <div className="joinInfo">
       <BackButtonContainer />
       <div className="joinForm">
         <h1>회원가입</h1>
