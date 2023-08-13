@@ -19,10 +19,12 @@
 
     img {
       &:first-child {
-        width: 15vw;
+        width: 118px;
+        height: 143px;
       }
       &:last-child {
-        width: 20vw;
+        width: 144px;
+        height: 32px;
       }
     }
   }
@@ -69,7 +71,7 @@
         border-radius: 6px;
         background: $blue;
         border: 1px solid $blue;
-
+        cursor: pointer;
         font-family: Apple SD Gothic Neo;
         font-size: 18px;
         font-weight: 800;

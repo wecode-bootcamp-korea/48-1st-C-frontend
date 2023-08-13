@@ -19,12 +19,12 @@ export default function JoinDone() {
           <path
             d="M46.3636 58.0165L58.2645 69.9173L79.0909 49.0909"
             stroke="black"
-            stroke-width="2"
-            stroke-miterlimit="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeMiterlimit="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
-          <circle cx="60" cy="60" r="53.5455" stroke="black" stroke-width="2" />
+          <circle cx="60" cy="60" r="53.5455" stroke="black" strokeWidth="2" />
         </svg>
         <div>
           <h1>회원 가입되었습니다!</h1>
