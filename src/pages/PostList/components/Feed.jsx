@@ -5,7 +5,7 @@ const Feed = ({ feedData, handleRemove }) => {
   const [heartToggle, setHeartToggle] = useState(false);
   const [like, setLike] = useState(0);
 
-  const feedDate = new Date(feedData.date).toLocaleDateString();
+  const feedDate = new Date(feedData.createdAt).toLocaleDateString();
 
   const handleHeartToggle = () => {
     setHeartToggle(!heartToggle);
@@ -22,7 +22,7 @@ const Feed = ({ feedData, handleRemove }) => {
             alt="프로필 이미지"
           />
           <p className="userName">
-            <b>{feedData.userName}</b>
+            <b>{feedData.nickname}</b>
           </p>
         </div>
         <div className="feedProfileBoxRight">
@@ -36,7 +36,7 @@ const Feed = ({ feedData, handleRemove }) => {
         </div>
       </div>
       <div className="feedContentBox">
-        <p className="feedContent">{feedData.feedContent}</p>
+        <p className="feedContent">{feedData.content}</p>
       </div>
       <div className="feedDescriptionBox">
         <div className="feedDescriptionTop">
