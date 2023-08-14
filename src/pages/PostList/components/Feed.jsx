@@ -62,8 +62,9 @@ const Feed = ({ feedData, handleRemove }) => {
           />
         </div>
       </div>
-
-      <CommentItem feedData={feedData} feedDate={feedDate} />
+      {!hideFeedContent && (
+        <CommentItem feedData={feedData} feedDate={feedDate} />
+      )}
     </>
   );
 };
