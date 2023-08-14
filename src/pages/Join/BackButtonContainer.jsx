@@ -21,10 +21,10 @@ export default function BackButtonContainer() {
           <path
             d="M22.5 10L12.5 20L22.5 30"
             stroke="black"
-            stroke-width="2"
-            stroke-miterlimit="3"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeMiterlimit="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           />
         </svg>
         뒤로

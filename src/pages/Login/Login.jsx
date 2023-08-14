@@ -14,7 +14,7 @@ const Login = () => {
 
   const handleLogin = () => {
     fetch('data/userData.json')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(userData => {
         const userMatched = userData.find(
           user =>

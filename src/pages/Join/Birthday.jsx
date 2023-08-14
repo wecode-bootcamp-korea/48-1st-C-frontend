@@ -1,13 +1,26 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
-function Birthday() {
-  const years = Array.from({ length: 120 }, (_, index) => 2023 - index + '년');
-  const months = Array.from({ length: 12 }, (_, index) => index + 1 + '월');
-  const days = Array.from({ length: 31 }, (_, index) => index + 1 + '일');
+export default function Birthday({ onBirthdayChange }) {
+  const years = Array.from({ length: 120 }, (_, index) =>
+    (2023 - index).toString(),
+  );
+  const months = Array.from({ length: 12 }, (_, index) =>
+    (index + 1).toString().padStart(2, '0'),
+  );
+  const days = Array.from({ length: 31 }, (_, index) =>
+    (index + 1).toString().padStart(2, '0'),
+  );
 
   const [selectedYear, setSelectedYear] = useState('');
   const [selectedMonth, setSelectedMonth] = useState('');
   const [selectedDay, setSelectedDay] = useState('');
+
+  useEffect(() => {
+    if (selectedYear && selectedMonth && selectedDay) {
+      const formattedBirthday = `${selectedYear}-${selectedMonth}-${selectedDay}`;
+      onBirthdayChange(formattedBirthday);
+    }
+  }, [selectedYear, selectedMonth, selectedDay]);
 
   return (
     <div className="birthdaySelect">
@@ -18,7 +31,7 @@ function Birthday() {
         >
           {years.map(year => (
             <option key={year} value={year}>
-              {year}
+              {year}년
             </option>
           ))}
         </select>
@@ -30,7 +43,7 @@ function Birthday() {
         >
           {months.map(month => (
             <option key={month} value={month}>
-              {month}
+              {month}월
             </option>
           ))}
         </select>
@@ -42,7 +55,7 @@ function Birthday() {
         >
           {days.map(day => (
             <option key={day} value={day}>
-              {day}
+              {day}일
             </option>
           ))}
         </select>
@@ -50,5 +63,3 @@ function Birthday() {
     </div>
   );
 }
-
-export default Birthday;
