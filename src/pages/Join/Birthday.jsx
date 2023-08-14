@@ -24,7 +24,7 @@ export default function Birthday({ onBirthdayChange }) {
 
   return (
     <div className="birthdaySelect">
-      <label>
+      <div>
         <select
           value={selectedYear}
           onChange={e => setSelectedYear(e.target.value)}
@@ -35,8 +35,8 @@ export default function Birthday({ onBirthdayChange }) {
             </option>
           ))}
         </select>
-      </label>
-      <label>
+      </div>
+      <div>
         <select
           value={selectedMonth}
           onChange={e => setSelectedMonth(e.target.value)}
@@ -47,8 +47,8 @@ export default function Birthday({ onBirthdayChange }) {
             </option>
           ))}
         </select>
-      </label>
-      <label>
+      </div>
+      <div>
         <select
           value={selectedDay}
           onChange={e => setSelectedDay(e.target.value)}
@@ -59,7 +59,7 @@ export default function Birthday({ onBirthdayChange }) {
             </option>
           ))}
         </select>
-      </label>
+      </div>
     </div>
   );
 }
