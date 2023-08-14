@@ -32,7 +32,7 @@ const CommentItem = ({ feedData, feedDate }) => {
               </div>
             </div>
             <p className="userCommentBox">
-              sdafasddsafasdfasdfsafasfasdfjssdafasddsafasdfasdfsafasfasdfjssdafasddsafasdfasdfsafasfasdfjssdafasddsafasdfasdfsafasfasdfjssdafasddsafasdfasdfsafasfasdfjssdafasddsafasdfasdfsafasfasdfjs
+              sdafasdfdsafadasfsdafasdfdsafadasfsdafasdfdsafadasfsdafasdfdsafadasfsdafasdfdsafadasfsdafasdfdsafadasf
             </p>
           </div>
         </div>
