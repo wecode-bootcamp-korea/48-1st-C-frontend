@@ -4,12 +4,13 @@
   display: grid;
   grid-template-columns: 6fr 1fr;
   gap: 8px;
-  height: 50px;
   margin: 24px 0;
+  height: 50px;
 
   .feedInput {
     border: 1px solid #e6e6e6;
     border-radius: 4px;
+    height: 50px;
   }
 
   .postBtn {

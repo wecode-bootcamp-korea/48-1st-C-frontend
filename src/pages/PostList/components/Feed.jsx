@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
-import './Feed.scss';
 import CommentItem from './CommentItem';
+import './Feed.scss';
 
 const Feed = ({ feedData, handleRemove }) => {
-  const [heartToggle, setHeartToggle] = useState(false);
-  const [like, setLike] = useState(0);
-  const [hideFeedContent, setHideFeedContent] = useState(true);
+  const [isHeartButtonToggle, setIsHeartButtonToggle] = useState(false);
+  const [feedLikeCount, setFeedLikeCount] = useState(0);
+  const [isHideFeedContent, setIsHideFeedContent] = useState(true);
 
   const feedDate = new Date(feedData.createdAt).toLocaleDateString();
 
   const handleHeartToggle = e => {
     e.stopPropagation();
-    setHeartToggle(!heartToggle);
-    setLike(heartToggle ? like - 1 : like + 1);
+    setIsHeartButtonToggle(!isHeartButtonToggle);
+    setFeedLikeCount(
+      isHeartButtonToggle ? feedLikeCount - 1 : feedLikeCount + 1,
+    );
   };
 
   const handleHideFeedContent = () => {
-    setHideFeedContent(!hideFeedContent);
+    setIsHideFeedContent(!isHideFeedContent);
   };
 
   return (
@@ -48,14 +50,14 @@ const Feed = ({ feedData, handleRemove }) => {
         </div>
         <div className="feedDescriptionBox">
           <div className="feedDescriptionTop">
-            <p>좋아요 {like}</p>
+            <p>좋아요 {feedLikeCount}</p>
             <p>댓글 00</p>
           </div>
           <img
             onClick={handleHeartToggle}
             className="feedHeartImg"
             src={
-              heartToggle
+              isHeartButtonToggle
                 ? process.env.PUBLIC_URL + '/images/fillheart.svg'
                 : process.env.PUBLIC_URL + '/images/heart.svg'
             }
@@ -63,7 +65,7 @@ const Feed = ({ feedData, handleRemove }) => {
           />
         </div>
       </div>
-      {!hideFeedContent && (
+      {!isHideFeedContent && (
         <CommentItem feedData={feedData} feedDate={feedDate} />
       )}
     </>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './PostList.scss';
 import Feed from './components/Feed';
+import './PostList.scss';
 
 const PostList = () => {
   const [feedsData, setFeedsData] = useState([]);
@@ -25,27 +25,21 @@ const PostList = () => {
 
   return (
     <div className="postListContainer">
-      <div className="postListContentContainer">
-        <div className="feedContainer">
-          <div className="feedContentContainer">
-            {feedsData.length === 0 ? (
-              <p>{noListMessage}</p>
-            ) : (
-              <>
-                {feedsData.map(feedData => (
-                  <Feed
-                    key={feedData.id}
-                    feedData={feedData}
-                    handleRemove={handleRemove}
-                  />
-                ))}
-              </>
-            )}
-          </div>
-        </div>
-        <div className="btnBox">
-          <button className="btn">글 쓰기</button>
-        </div>
+      <div className="feedContainer">
+        {feedsData.length === 0 ? (
+          <p>{noListMessage}</p>
+        ) : (
+          feedsData.map(feedData => (
+            <Feed
+              key={feedData.id}
+              feedData={feedData}
+              handleRemove={handleRemove}
+            />
+          ))
+        )}
+      </div>
+      <div className="btnBox">
+        <button className="btn">글 쓰기</button>
       </div>
     </div>
   );
