@@ -32,9 +32,9 @@ const PostList = () => {
               <p>{noListMessage}</p>
             ) : (
               <>
-                {feedsData.map((feedData, index) => (
+                {feedsData.map(feedData => (
                   <Feed
-                    key={index}
+                    key={feedData.id}
                     feedData={feedData}
                     handleRemove={handleRemove}
                   />

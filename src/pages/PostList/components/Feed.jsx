@@ -9,7 +9,8 @@ const Feed = ({ feedData, handleRemove }) => {
 
   const feedDate = new Date(feedData.createdAt).toLocaleDateString();
 
-  const handleHeartToggle = () => {
+  const handleHeartToggle = e => {
+    e.stopPropagation();
     setHeartToggle(!heartToggle);
     setLike(heartToggle ? like - 1 : like + 1);
   };
