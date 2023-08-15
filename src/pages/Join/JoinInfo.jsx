@@ -6,6 +6,8 @@ import Birthday from './Birthday';
 import LoginButton from '../Login/components/LoginButton';
 import './Join.scss';
 
+const AREA_CODE = ['010', '011', '016', '017', '018', '019'];
+
 export default function JoinInfo() {
   const navigate = useNavigate();
 
@@ -99,19 +101,21 @@ export default function JoinInfo() {
     <div className="joinInfo">
       <BackButtonContainer />
       <div className="joinForm">
-        <h1>회원가입</h1>
-        <p className="joinIsVaild first">
+        <h1 className="">회원가입</h1>
+        <p className="joinIsVaild emailIsVaild">
           {emailIsVaild ? '' : '아이디는 이메일 형식이어야 합니다.'}
         </p>
         <p className="joinIsVaild">
           {passwordIsVaild ? '' : '비밀번호는 8글자 이상이어야 합니다.'}
         </p>
-        <p className="joinIsVaild last">
+        <p className="joinIsVaild passwordCheckIsVaild">
           {passwordCheckIsVaild ? '' : '비밀번화와 일치하지 않습니다.'}
         </p>
         <div className="inputDescription">
-          <p>기본 정보</p>
-          <p id="required">필수 사항</p>
+          <p className="inputDescriptionLeft">기본 정보</p>
+          <p className="inputDescriptionRight" id="required">
+            필수 사항
+          </p>
         </div>
         <LoginInput
           placeholder="이메일"
@@ -135,8 +139,8 @@ export default function JoinInfo() {
           onChange={handleInputChange}
         />
         <div className="inputDescription">
-          <p>닉네임</p>
-          <p>선택 사항</p>
+          <p className="inputDescriptionLeft">닉네임</p>
+          <p className="inputDescriptionRight">선택 사항</p>
         </div>
         <LoginInput
           placeholder="닉네임"
@@ -146,17 +150,16 @@ export default function JoinInfo() {
           onChange={handleInputChange}
         />
         <div className="inputDescription">
-          <p>전화번호</p>
-          <p>선택 사항</p>
+          <p className="inputDescriptionLeft">전화번호</p>
+          <p className="inputDescriptionRight">선택 사항</p>
         </div>
         <div className="phoneNumber">
           <select>
-            <option value="010">010</option>
-            <option value="011">011</option>
-            <option value="016">016</option>
-            <option value="017">017</option>
-            <option value="018">018</option>
-            <option value="019">019</option>
+            {AREA_CODE.map(areaCode => (
+              <option key={areaCode} value={areaCode}>
+                {areaCode}
+              </option>
+            ))}
           </select>
           <LoginInput
             placeholder="휴대폰 번호를 입력해주세요"
@@ -167,8 +170,8 @@ export default function JoinInfo() {
           />
         </div>
         <div className="inputDescription">
-          <p>생일</p>
-          <p>선택 사항</p>
+          <p className="inputDescriptionLeft">생일</p>
+          <p className="inputDescriptionRight">선택 사항</p>
         </div>
         <div className="birthday">
           <Birthday onBirthdayChange={handleBirthdayChange} />

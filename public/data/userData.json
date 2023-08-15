@@ -1,14 +1,14 @@
 [
   {
     "email": "admin@gmail.com",
-    "password": "123456",
+    "password": "12345678",
     "phoneNumber": "010-4023-6890",
     "nickname": "박동철",
     "birthday": "1998-01-04"
   },
   {
     "email": "testuser@gmail.com",
-    "password": "123456",
+    "password": "12345678",
     "phoneNumber": "010-1234-5678",
     "nickname": "김유저",
     "birthday": "2003-08-13"

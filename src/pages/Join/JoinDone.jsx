@@ -2,12 +2,13 @@ import React from 'react';
 import BackButtonContainer from './BackButtonContainer';
 import LoginButton from '../Login/components/LoginButton';
 import './Join.scss';
+import './JoinDone.scss';
 
 export default function JoinDone() {
   return (
     <div className="joinDone">
       <BackButtonContainer />
-      <div className="joinSuccessMessage">
+      <div className="joinSuccessContainer">
         <svg
           className="checkMarkSvg"
           xmlns="http://www.w3.org/2000/svg"
@@ -26,12 +27,12 @@ export default function JoinDone() {
           />
           <circle cx="60" cy="60" r="53.5455" stroke="black" strokeWidth="2" />
         </svg>
-        <div>
+        <div className="joinSuccessMessage">
           <h1>회원 가입되었습니다!</h1>
           <p>이제 로그인해주세요.</p>
         </div>
       </div>
-      <LoginButton text={'확인'} />
+      <LoginButton text="확인" className="loginButton" />
     </div>
   );
 }

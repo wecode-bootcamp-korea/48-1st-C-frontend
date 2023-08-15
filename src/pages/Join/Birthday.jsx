@@ -21,43 +21,40 @@ export default function Birthday({ onBirthdayChange }) {
   }, [selectedYear, selectedMonth, selectedDay]);
 
   return (
-    <div className="birthdaySelect">
-      <div>
-        <select
-          value={selectedYear}
-          onChange={e => setSelectedYear(e.target.value)}
-        >
-          {years.map(year => (
-            <option key={year} value={year}>
-              {year}년
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <select
-          value={selectedMonth}
-          onChange={e => setSelectedMonth(e.target.value)}
-        >
-          {months.map(month => (
-            <option key={month} value={month}>
-              {month}월
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <select
-          value={selectedDay}
-          onChange={e => setSelectedDay(e.target.value)}
-        >
-          {days.map(day => (
-            <option key={day} value={day}>
-              {day}일
-            </option>
-          ))}
-        </select>
-      </div>
-    </div>
+    <>
+      <select
+        className="birthdaySelect"
+        value={selectedYear}
+        onChange={e => setSelectedYear(e.target.value)}
+      >
+        {years.map(year => (
+          <option key={year} value={year}>
+            {year}년
+          </option>
+        ))}
+      </select>
+      <select
+        className="birthdaySelect"
+        value={selectedMonth}
+        onChange={e => setSelectedMonth(e.target.value)}
+      >
+        {months.map(month => (
+          <option key={month} value={month}>
+            {month}월
+          </option>
+        ))}
+      </select>
+      <select
+        className="birthdaySelect"
+        value={selectedDay}
+        onChange={e => setSelectedDay(e.target.value)}
+      >
+        {days.map(day => (
+          <option key={day} value={day}>
+            {day}일
+          </option>
+        ))}
+      </select>
+    </>
   );
 }

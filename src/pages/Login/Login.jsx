@@ -12,6 +12,14 @@ const Login = () => {
     password: '',
   });
 
+  const emailIsVaild =
+    loginUserInfo.email.includes('@') && loginUserInfo.email.includes('.');
+  const passwordIsVaild = loginUserInfo.password.length >= 8;
+
+  const isVaild = emailIsVaild && passwordIsVaild;
+
+  const ButtonClassName = isVaild ? 'loginButton buttonIsVaild' : 'loginButton';
+
   const handleLogin = () => {
     fetch('data/userData.json')
       .then(res => res.json())
@@ -49,20 +57,24 @@ const Login = () => {
       </div>
       <div className="loginForm">
         <LoginInput
-          placeholder={'이메일'}
-          type={'text'}
-          name={'email'}
+          placeholder="이메일"
+          type="text"
+          name="email"
           value={loginUserInfo.email}
           onChange={handleInputChange}
         />
         <LoginInput
-          placeholder={'비밀번호'}
-          type={'password'}
-          name={'password'}
+          placeholder="비밀번호"
+          type="password"
+          name="password"
           value={loginUserInfo.password}
           onChange={handleInputChange}
         />
-        <LoginButton text={'로그인'} onClick={handleLogin} />
+        <LoginButton
+          text="로그인"
+          onClick={handleLogin}
+          className={ButtonClassName}
+        />
         <div className="loginOption">
           <Link to="/join-info">회원가입</Link>
           <Link to="#">비밀번호 찾기</Link>
