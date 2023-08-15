@@ -3,8 +3,8 @@ import CommentItem from './CommentItem';
 import './Feed.scss';
 
 const Feed = ({ feedData, handleRemove }) => {
-  const [isHeartButtonToggle, setIsHeartButtonToggle] = useState(false);
   const [feedLikeCount, setFeedLikeCount] = useState(0);
+  const [isHeartButtonToggle, setIsHeartButtonToggle] = useState(false);
   const [isHideFeedContent, setIsHideFeedContent] = useState(true);
 
   const feedDate = new Date(feedData.createdAt).toLocaleDateString();
