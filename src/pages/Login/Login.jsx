@@ -18,7 +18,7 @@ const Login = () => {
 
   const isVaild = emailIsVaild && passwordIsVaild;
 
-  const ButtonClassName = isVaild ? 'loginButton buttonIsVaild' : 'loginButton';
+  const buttonClassName = isVaild ? 'loginButton buttonIsVaild' : 'loginButton';
 
   const handleLogin = () => {
     fetch('data/userData.json')
@@ -73,7 +73,8 @@ const Login = () => {
         <LoginButton
           text="로그인"
           onClick={handleLogin}
-          className={ButtonClassName}
+          className={buttonClassName}
+          disabled={!isVaild}
         />
         <div className="loginOption">
           <Link to="/join-info">회원가입</Link>
