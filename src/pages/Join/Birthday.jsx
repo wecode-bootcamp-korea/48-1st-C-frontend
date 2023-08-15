@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 export default function Birthday({ onBirthdayChange }) {
-  const years = Array.from({ length: 120 }, (_, index) =>
-    (2023 - index).toString(),
+  const years = Array.from({ length: 120 }, (_, i) => (2023 - i).toString());
+  const months = Array.from({ length: 12 }, (_, i) =>
+    (i + 1).toString().padStart(2, '0'),
   );
-  const months = Array.from({ length: 12 }, (_, index) =>
-    (index + 1).toString().padStart(2, '0'),
-  );
-  const days = Array.from({ length: 31 }, (_, index) =>
-    (index + 1).toString().padStart(2, '0'),
+  const days = Array.from({ length: 31 }, (_, i) =>
+    (i + 1).toString().padStart(2, '0'),
   );
 
   const [selectedYear, setSelectedYear] = useState('');

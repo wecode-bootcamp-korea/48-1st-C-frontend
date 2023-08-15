@@ -25,11 +25,15 @@ export default function JoinInfo() {
     birthday: joinUserInfo.birthday,
   };
 
-  const isVaild =
-    joinUserInfo.email.includes('@') &&
-    joinUserInfo.email.includes('.') &&
-    joinUserInfo.password.length >= 8 &&
+  const emailIsVaild =
+    joinUserInfo.email.includes('@') && joinUserInfo.email.includes('.');
+  const passwordIsVaild = joinUserInfo.password.length >= 8;
+  const passwordCheckIsVaild =
     joinUserInfo.password === joinUserInfo.passwordCheck;
+
+  const isVaild = emailIsVaild && passwordIsVaild && passwordCheckIsVaild;
+
+  const ButtonClassName = isVaild ? 'loginButton buttonIsVaild' : 'loginButton';
 
   const handleJoin = () => {
     if (isVaild) {
@@ -96,6 +100,15 @@ export default function JoinInfo() {
       <BackButtonContainer />
       <div className="joinForm">
         <h1>회원가입</h1>
+        <p className="joinIsVaild first">
+          {emailIsVaild ? '' : '아이디는 이메일 형식이어야 합니다.'}
+        </p>
+        <p className="joinIsVaild">
+          {passwordIsVaild ? '' : '비밀번호는 8글자 이상이어야 합니다.'}
+        </p>
+        <p className="joinIsVaild last">
+          {passwordCheckIsVaild ? '' : '비밀번화와 일치하지 않습니다.'}
+        </p>
         <div className="inputDescription">
           <p>기본 정보</p>
           <p id="required">필수 사항</p>
@@ -161,7 +174,12 @@ export default function JoinInfo() {
           <Birthday onBirthdayChange={handleBirthdayChange} />
         </div>
       </div>
-      <LoginButton text="회원 가입" onClick={handleJoin} />
+      <LoginButton
+        text="회원 가입"
+        onClick={handleJoin}
+        className={ButtonClassName}
+        disabled={!isVaild}
+      />
     </div>
   );
 }
