@@ -20,10 +20,14 @@ const Feed = ({ feedData, handleRemove }) => {
 
   const handleHeartToggle = e => {
     e.stopPropagation();
-    setIsHeartButtonToggle(prev => !prev);
-    setFeedLikeCount(
-      isHeartButtonToggle ? feedLikeCount - 1 : feedLikeCount + 1,
-    );
+
+    if (!isHeartButtonToggle) {
+      setFeedLikeCount(feedLikeCount + 1);
+      setIsHeartButtonToggle(true);
+    } else if (feedLikeCount > 0) {
+      setFeedLikeCount(feedLikeCount - 1);
+      setIsHeartButtonToggle(false);
+    }
   };
 
   const handleHideFeedContent = () => {
