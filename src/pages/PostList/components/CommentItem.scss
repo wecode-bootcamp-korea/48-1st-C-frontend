@@ -1,4 +1,5 @@
 @import '../../../style/variables.scss';
+
 .inputForm {
   width: 100%;
   display: grid;
@@ -11,6 +12,9 @@
     border: 1px solid #e6e6e6;
     border-radius: 4px;
     height: 50px;
+
+    &:focus {
+    }
   }
 
   .postBtn {

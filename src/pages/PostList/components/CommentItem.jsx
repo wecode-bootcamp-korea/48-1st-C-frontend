@@ -16,6 +16,15 @@ const CommentItem = ({ feedData, feedDate }) => {
     setFeedCommentList(cur => [feedComment, ...cur]);
   };
 
+  const handleDeleteComment = targetId => {
+    const newComment = feedCommentList
+      .slice(0, targetId)
+      .concat(feedCommentList.slice(targetId + 1));
+    setFeedCommentList(newComment);
+  };
+
+  const handleEditCOmment = () => {};
+
   return (
     <>
       <form className="inputForm" onSubmit={handleWriteComment}>
@@ -44,8 +53,15 @@ const CommentItem = ({ feedData, feedDate }) => {
                 </p>
                 <div className="commentProfileBoxRight">
                   <p className="date">{feedDate}</p>
-                  <button className="deleteBtn">삭제</button>
-                  <button className="editBtn">수정</button>
+                  <button
+                    className="deleteBtn"
+                    onClick={() => handleDeleteComment(index)}
+                  >
+                    삭제
+                  </button>
+                  <button className="editBtn" onClick={handleEditCOmment}>
+                    수정
+                  </button>
                 </div>
               </div>
               <p className="userCommentBox">{elements}</p>
