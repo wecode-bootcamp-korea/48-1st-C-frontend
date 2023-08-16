@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../../components/Button';
 import Feed from './components/Feed';
 import './PostList.scss';
 
 const PostList = () => {
   const [feedsData, setFeedsData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch('/data/data.json', {
@@ -24,6 +26,10 @@ const PostList = () => {
     setFeedsData(newList);
   };
 
+  const goToCreatePost = () => {
+    navigate('/create-post');
+  };
+
   return (
     <div className="postListContainer">
       <div className="feedContainer">
@@ -40,7 +46,7 @@ const PostList = () => {
         )}
       </div>
       <div className="btnBox">
-        <Button className="btn" text="글 쓰기" />
+        <Button className="btn" text="글 쓰기" onClick={goToCreatePost} />
       </div>
     </div>
   );
