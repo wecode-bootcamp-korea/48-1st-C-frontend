@@ -6,7 +6,8 @@ const CommentItem = ({ feedData, feedDate }) => {
   const [feedCommentList, setFeedCommentList] = useState([]);
 
   const onCommentChange = e => {
-    setFeedComment(e.target.value);
+    const { value } = e.target;
+    setFeedComment(value);
   };
 
   const handleWriteComment = e => {
@@ -22,11 +23,7 @@ const CommentItem = ({ feedData, feedDate }) => {
     })
       .then(res => res.json())
       .then(data => {
-        const res = data.map(d => ({
-          ...d,
-          body: d.comments,
-        }));
-        setFeedComment(res);
+        console.log('data', data);
       });
 
     setFeedCommentList(cur => [feedComment, ...cur]);

@@ -46,10 +46,10 @@ const PostList = () => {
   return (
     <div className="postListContainer">
       <div className="feedContainer">
-        {!feedsData ? (
+        {!feedsData.data ? (
           <p>{noListMessage}</p>
         ) : (
-          feedsData.map(feedData => (
+          feedsData.data.map(feedData => (
             <Feed
               key={feedData.userId}
               feedData={feedData}

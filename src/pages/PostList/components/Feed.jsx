@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { formatDate } from '../../../utils/formatDate';
+import { FormatDate } from '../../../utils/FormatDate';
 import CommentItem from './CommentItem';
 import './Feed.scss';
 
@@ -15,13 +15,13 @@ const Feed = ({ feedData, handleRemove }) => {
       setFeedLikeCount(prev => prev + 1);
       setIsHeartButtonToggle(true);
     } else if (feedLikeCount > 0) {
-      setFeedLikeCount(feedLikeCount - 1);
+      setFeedLikeCount(prev => prev - 1);
       setIsHeartButtonToggle(false);
     }
   };
 
   const handleShowFeedContent = () => {
-    setIsShowFeedContent(!isShowFeedContent);
+    setIsShowFeedContent(prev => !prev);
   };
 
   return (
@@ -39,7 +39,7 @@ const Feed = ({ feedData, handleRemove }) => {
             </p>
           </div>
           <div className="feedProfileBoxRight">
-            <p className="date">{formatDate(feedData)}</p>
+            <p className="date">{FormatDate(feedData)}</p>
             <button
               className="deleteBtn"
               onClick={() => handleRemove(feedData.userId)}
@@ -65,7 +65,7 @@ const Feed = ({ feedData, handleRemove }) => {
         </div>
       </div>
       {isShowFeedContent && (
-        <CommentItem feedData={feedData} feedDate={formatDate(feedData)} />
+        <CommentItem feedData={feedData} feedDate={FormatDate(feedData)} />
       )}
     </>
   );
