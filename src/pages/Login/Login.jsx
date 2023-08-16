@@ -31,6 +31,8 @@ const Login = () => {
         );
 
         if (userMatched) {
+          localStorage.setItem('userEmail', userMatched.email);
+          localStorage.setItem('userNickname', userMatched.nickname);
           navigate('/join-done');
         } else {
           alert('이메일 또는 비밀번호가 일치하지 않습니다.');
@@ -59,7 +61,7 @@ const Login = () => {
         <Input
           className="loginInput"
           placeholder="이메일"
-          type="text"
+          type="email"
           name="email"
           value={loginUserInfo.email}
           onChange={handleInputChange}

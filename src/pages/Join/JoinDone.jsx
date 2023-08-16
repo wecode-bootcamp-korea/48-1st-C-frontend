@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BackButtonContainer from './BackButtonContainer';
 import Button from '../../components/Button';
 import './Join.scss';
 import './JoinDone.scss';
 
 export default function JoinDone() {
+  const navigate = useNavigate();
+
   return (
     <div className="joinDone">
       <BackButtonContainer />
@@ -32,7 +35,11 @@ export default function JoinDone() {
           <p>이제 로그인해주세요.</p>
         </div>
       </div>
-      <Button text="확인" className="loginButton" />
+      <Button
+        text="확인"
+        onClick={() => navigate('/login')}
+        className="loginButton"
+      />
     </div>
   );
 }

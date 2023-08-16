@@ -103,13 +103,13 @@ export default function JoinInfo() {
       <div className="joinForm">
         <h1 className="">회원가입</h1>
         <p className="joinIsVaild emailIsVaild">
-          {emailIsVaild ? '' : '아이디는 이메일 형식이어야 합니다.'}
+          {!emailIsVaild && '❗아이디는 이메일 형식이어야 합니다.❗'}
         </p>
         <p className="joinIsVaild">
-          {passwordIsVaild ? '' : '비밀번호는 8글자 이상이어야 합니다.'}
+          {!passwordIsVaild && '❗비밀번호는 8글자 이상이어야 합니다.❗'}
         </p>
         <p className="joinIsVaild passwordCheckIsVaild">
-          {passwordCheckIsVaild ? '' : '비밀번화와 일치하지 않습니다.'}
+          {!passwordCheckIsVaild && '❗비밀번화와 일치하지 않습니다.❗'}
         </p>
         <div className="inputDescription">
           <p className="inputDescriptionLeft">기본 정보</p>
@@ -120,7 +120,7 @@ export default function JoinInfo() {
         <Input
           className="joinInput"
           placeholder="이메일"
-          type="text"
+          type="email"
           name="email"
           value={joinUserInfo.email}
           onChange={handleInputChange}
