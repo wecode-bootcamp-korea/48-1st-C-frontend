@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import CommentItem from './CommentItem';
 import './Feed.scss';
 
@@ -9,9 +9,18 @@ const Feed = ({ feedData, handleRemove }) => {
 
   const feedDate = new Date(feedData.createdAt).toLocaleDateString();
 
+  useEffect(() => {
+    const heartData = localStorage.getItem('heart');
+    if (heartData !== null) setIsHeartButtonToggle(JSON.parse(heartData));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('heart', JSON.stringify(isHeartButtonToggle));
+  }, [isHeartButtonToggle]);
+
   const handleHeartToggle = e => {
     e.stopPropagation();
-    setIsHeartButtonToggle(!isHeartButtonToggle);
+    setIsHeartButtonToggle(prev => !prev);
     setFeedLikeCount(
       isHeartButtonToggle ? feedLikeCount - 1 : feedLikeCount + 1,
     );
@@ -65,7 +74,7 @@ const Feed = ({ feedData, handleRemove }) => {
           />
         </div>
       </div>
-      {!isHideFeedContent && (
+      {isHideFeedContent && (
         <CommentItem feedData={feedData} feedDate={feedDate} />
       )}
     </>
