@@ -1,28 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { formatDate } from '../../../utils/formatDate';
 import CommentItem from './CommentItem';
 import './Feed.scss';
 
 const Feed = ({ feedData, handleRemove }) => {
   const [feedLikeCount, setFeedLikeCount] = useState(0);
   const [isHeartButtonToggle, setIsHeartButtonToggle] = useState(false);
-  const [isHideFeedContent, setIsHideFeedContent] = useState(true);
-
-  const feedDate = new Date(feedData.created_at).toLocaleDateString();
-
-  useEffect(() => {
-    const heartData = localStorage.getItem('heart');
-    if (heartData !== null) setIsHeartButtonToggle(JSON.parse(heartData));
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem('heart', JSON.stringify(isHeartButtonToggle));
-  }, [isHeartButtonToggle]);
+  const [isShowFeedContent, setIsShowFeedContent] = useState(false);
 
   const handleHeartToggle = e => {
     e.stopPropagation();
 
     if (!isHeartButtonToggle) {
-      setFeedLikeCount(feedLikeCount + 1);
+      setFeedLikeCount(prev => prev + 1);
       setIsHeartButtonToggle(true);
     } else if (feedLikeCount > 0) {
       setFeedLikeCount(feedLikeCount - 1);
@@ -30,18 +20,18 @@ const Feed = ({ feedData, handleRemove }) => {
     }
   };
 
-  const handleHideFeedContent = () => {
-    setIsHideFeedContent(!isHideFeedContent);
+  const handleShowFeedContent = () => {
+    setIsShowFeedContent(!isShowFeedContent);
   };
 
   return (
     <>
-      <div className="feed" onClick={handleHideFeedContent}>
+      <div className="feed" onClick={handleShowFeedContent}>
         <div className="feedProfileBox">
           <div className="feedProfileBoxLeft">
             <img
               className="profileImg"
-              src={feedData.profile_image}
+              src={feedData.profileImage}
               alt="프로필 이미지"
             />
             <p className="userName">
@@ -49,10 +39,10 @@ const Feed = ({ feedData, handleRemove }) => {
             </p>
           </div>
           <div className="feedProfileBoxRight">
-            <p className="date">{feedDate}</p>
+            <p className="date">{formatDate(feedData)}</p>
             <button
               className="deleteBtn"
-              onClick={() => handleRemove(feedData.id)}
+              onClick={() => handleRemove(feedData.userId)}
             >
               삭제
             </button>
@@ -64,22 +54,18 @@ const Feed = ({ feedData, handleRemove }) => {
         <div className="feedDescriptionBox">
           <div className="feedDescriptionTop">
             <p>좋아요 {feedLikeCount}</p>
-            <p>댓글 00</p>
+            <p>댓글 {feedData.comments.length}</p>
           </div>
           <img
             onClick={handleHeartToggle}
             className="feedHeartImg"
-            src={
-              isHeartButtonToggle
-                ? process.env.PUBLIC_URL + '/images/fillheart.svg'
-                : process.env.PUBLIC_URL + '/images/heart.svg'
-            }
+            src={`/images/${isHeartButtonToggle ? 'fill' : ''}heart.svg`}
             alt="좋아요 버튼"
           />
         </div>
       </div>
-      {isHideFeedContent && (
-        <CommentItem feedData={feedData} feedDate={feedDate} />
+      {isShowFeedContent && (
+        <CommentItem feedData={feedData} feedDate={formatDate(feedData)} />
       )}
     </>
   );

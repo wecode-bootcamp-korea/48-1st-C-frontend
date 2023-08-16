@@ -22,8 +22,21 @@ const PostList = () => {
   const noListMessage = '게시글이 없습니다.';
 
   const handleRemove = targetId => {
-    const newList = feedsData.filter(data => data.id !== targetId);
-    setFeedsData(newList);
+    // fetch('주소', {
+    //   method: 'DELETE',
+    // })
+    //   .then(res => {
+    //     if (!res.ok) {
+    //       throw new Error('삭제 못해요');
+    //     }
+    //     return res.json();
+    //   })
+    //   .then(data => {
+    //     if (!data) alert('삭제를 실패했습니다.');
+    //     if (data.message === 'ok') {
+    //       setFeedsData(feedsData.filter(data => data.userId !== targetId));
+    //     }
+    //   });
   };
 
   const goToCreatePost = () => {
@@ -33,12 +46,12 @@ const PostList = () => {
   return (
     <div className="postListContainer">
       <div className="feedContainer">
-        {feedsData.length === 0 ? (
+        {!feedsData ? (
           <p>{noListMessage}</p>
         ) : (
           feedsData.map(feedData => (
             <Feed
-              key={feedData.id}
+              key={feedData.userId}
               feedData={feedData}
               handleRemove={handleRemove}
             />

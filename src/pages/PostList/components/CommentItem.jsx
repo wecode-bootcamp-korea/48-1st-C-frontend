@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Input from '../../../components/Input';
-import Button from '../../../components/Button';
 import './CommentItem.scss';
 
 const CommentItem = ({ feedData, feedDate }) => {
@@ -15,6 +13,22 @@ const CommentItem = ({ feedData, feedDate }) => {
     e.preventDefault();
     if (feedComment === '') return;
     setFeedComment('');
+
+    fetch('주소', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        const res = data.map(d => ({
+          ...d,
+          body: d.comments,
+        }));
+        setFeedComment(res);
+      });
+
     setFeedCommentList(cur => [feedComment, ...cur]);
   };
 
@@ -28,22 +42,21 @@ const CommentItem = ({ feedData, feedDate }) => {
   return (
     <>
       <form className="inputForm" onSubmit={handleWriteComment}>
-        <Input
-          className="feedInput"
+        <input
           type="text"
           placeholder="댓글을 작성해주세요."
           value={feedComment}
+          className="feedInput"
           onChange={onCommentChange}
         />
-        <Button className="postBtn" text="댓글 게시" />
+        <button className="postBtn">댓글 게시</button>
       </form>
-
       {feedCommentList.map((elements, index) => (
         <div className="commentContainer" key={index}>
           <div className="commentProfileBox">
             <img
               className="commentProfileImg"
-              src={feedData.profile_image}
+              src={feedData.profileImage}
               alt="프로필 이미지"
             />
             <div className="commentRightBox">
@@ -70,5 +83,4 @@ const CommentItem = ({ feedData, feedDate }) => {
     </>
   );
 };
-
 export default CommentItem;
