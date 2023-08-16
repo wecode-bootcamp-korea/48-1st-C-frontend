@@ -1,6 +1,6 @@
 import React from 'react';
 import BackButtonContainer from './BackButtonContainer';
-import LoginButton from '../Login/components/LoginButton';
+import Button from '../../components/Button';
 import './Join.scss';
 import './JoinDone.scss';
 
@@ -32,7 +32,7 @@ export default function JoinDone() {
           <p>이제 로그인해주세요.</p>
         </div>
       </div>
-      <LoginButton text="확인" className="loginButton" />
+      <Button text="확인" className="loginButton" />
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LoginInput from './components/LoginInput';
-import LoginButton from './components/LoginButton';
 import './Login.scss';
+import Button from '../../components/Button';
+import Input from '../../components/Input';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -56,21 +57,21 @@ const Login = () => {
         <img src="/images/logo_wecode.png" alt="WECODE" />
       </div>
       <div className="loginForm">
-        <LoginInput
+        <Input
           placeholder="이메일"
           type="text"
           name="email"
           value={loginUserInfo.email}
           onChange={handleInputChange}
         />
-        <LoginInput
+        <Input
           placeholder="비밀번호"
           type="password"
           name="password"
           value={loginUserInfo.password}
           onChange={handleInputChange}
         />
-        <LoginButton
+        <Button
           text="로그인"
           onClick={handleLogin}
           className={buttonClassName}

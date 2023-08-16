@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import BackButtonContainer from './BackButtonContainer';
 import LoginInput from '../Login/components/LoginInput';
 import Birthday from './Birthday';
-import LoginButton from '../Login/components/LoginButton';
+import Button from '../../components/Button';
 import './Join.scss';
 
 const AREA_CODE = ['010', '011', '016', '017', '018', '019'];
@@ -177,7 +177,7 @@ export default function JoinInfo() {
           <Birthday onBirthdayChange={handleBirthdayChange} />
         </div>
       </div>
-      <LoginButton
+      <Button
         text="회원 가입"
         onClick={handleJoin}
         className={ButtonClassName}
