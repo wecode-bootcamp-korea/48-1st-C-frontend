@@ -7,7 +7,7 @@ const Feed = ({ feedData, handleRemove }) => {
   const [isHeartButtonToggle, setIsHeartButtonToggle] = useState(false);
   const [isHideFeedContent, setIsHideFeedContent] = useState(true);
 
-  const feedDate = new Date(feedData.createdAt).toLocaleDateString();
+  const feedDate = new Date(feedData.created_at).toLocaleDateString();
 
   useEffect(() => {
     const heartData = localStorage.getItem('heart');
@@ -37,7 +37,7 @@ const Feed = ({ feedData, handleRemove }) => {
           <div className="feedProfileBoxLeft">
             <img
               className="profileImg"
-              src={feedData.userImage}
+              src={feedData.profile_image}
               alt="프로필 이미지"
             />
             <p className="userName">

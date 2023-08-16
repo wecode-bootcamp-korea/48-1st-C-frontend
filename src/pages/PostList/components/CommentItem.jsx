@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import Input from '../../../components/Input';
+import Button from '../../../components/Button';
 import './CommentItem.scss';
 
 const CommentItem = ({ feedData, feedDate }) => {
@@ -23,19 +25,17 @@ const CommentItem = ({ feedData, feedDate }) => {
     setFeedCommentList(newComment);
   };
 
-  const handleEditCOmment = () => {};
-
   return (
     <>
       <form className="inputForm" onSubmit={handleWriteComment}>
-        <input
+        <Input
+          className="feedInput"
           type="text"
           placeholder="댓글을 작성해주세요."
           value={feedComment}
-          className="feedInput"
           onChange={onCommentChange}
         />
-        <button className="postBtn">댓글 게시</button>
+        <Button className="postBtn" text="댓글 게시" />
       </form>
 
       {feedCommentList.map((elements, index) => (
@@ -43,7 +43,7 @@ const CommentItem = ({ feedData, feedDate }) => {
           <div className="commentProfileBox">
             <img
               className="commentProfileImg"
-              src={feedData.userImage}
+              src={feedData.profile_image}
               alt="프로필 이미지"
             />
             <div className="commentRightBox">
@@ -59,9 +59,7 @@ const CommentItem = ({ feedData, feedDate }) => {
                   >
                     삭제
                   </button>
-                  <button className="editBtn" onClick={handleEditCOmment}>
-                    수정
-                  </button>
+                  <button className="editBtn">수정</button>
                 </div>
               </div>
               <p className="userCommentBox">{elements}</p>

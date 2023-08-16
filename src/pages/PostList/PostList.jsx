@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Button from '../../components/Button';
 import Feed from './components/Feed';
 import './PostList.scss';
 
@@ -39,7 +40,7 @@ const PostList = () => {
         )}
       </div>
       <div className="btnBox">
-        <button className="btn">글 쓰기</button>
+        <Button className="btn" text="글 쓰기" />
       </div>
     </div>
   );
