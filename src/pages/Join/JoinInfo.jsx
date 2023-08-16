@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackButtonContainer from './BackButtonContainer';
-import LoginInput from '../Login/components/LoginInput';
 import Birthday from './Birthday';
 import Button from '../../components/Button';
 import './Join.scss';
+import Input from '../../components/Input';
 
 const AREA_CODE = ['010', '011', '016', '017', '018', '019'];
 
@@ -117,21 +117,24 @@ export default function JoinInfo() {
             필수 사항
           </p>
         </div>
-        <LoginInput
+        <Input
+          className="joinInput"
           placeholder="이메일"
           type="text"
           name="email"
           value={joinUserInfo.email}
           onChange={handleInputChange}
         />
-        <LoginInput
+        <Input
+          className="joinInput"
           placeholder="비밀번호"
           type="password"
           name="password"
           value={joinUserInfo.password}
           onChange={handleInputChange}
         />
-        <LoginInput
+        <Input
+          className="joinInput"
           placeholder="비밀번호 확인"
           type="password"
           name="passwordCheck"
@@ -142,7 +145,8 @@ export default function JoinInfo() {
           <p className="inputDescriptionLeft">닉네임</p>
           <p className="inputDescriptionRight">선택 사항</p>
         </div>
-        <LoginInput
+        <Input
+          className="joinInput"
           placeholder="닉네임"
           type="text"
           name="nickname"
@@ -161,7 +165,8 @@ export default function JoinInfo() {
               </option>
             ))}
           </select>
-          <LoginInput
+          <Input
+            className="joinInput"
             placeholder="휴대폰 번호를 입력해주세요"
             type="text"
             name="phoneNumber"

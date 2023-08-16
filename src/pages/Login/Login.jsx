@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import LoginInput from './components/LoginInput';
-import './Login.scss';
-import Button from '../../components/Button';
 import Input from '../../components/Input';
+import Button from '../../components/Button';
+import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -58,6 +57,7 @@ const Login = () => {
       </div>
       <div className="loginForm">
         <Input
+          className="loginInput"
           placeholder="이메일"
           type="text"
           name="email"
@@ -65,6 +65,7 @@ const Login = () => {
           onChange={handleInputChange}
         />
         <Input
+          className="loginInput"
           placeholder="비밀번호"
           type="password"
           name="password"
