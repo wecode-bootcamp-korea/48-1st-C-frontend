@@ -14,32 +14,31 @@ const Login = () => {
 
   const emailIsVaild =
     loginUserInfo.email.includes('@') && loginUserInfo.email.includes('.');
-  const passwordIsVaild = loginUserInfo.password.length >= 8;
+  const passwordIsVaild = loginUserInfo.password.length >= 3;
 
   const isVaild = emailIsVaild && passwordIsVaild;
 
   const buttonClassName = isVaild ? 'loginButton buttonIsVaild' : 'loginButton';
 
   const handleLogin = () => {
-    fetch('data/userData.json')
+    fetch('http://10.58.52.158:3000/user/signIn', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+      },
+      body: JSON.stringify(loginUserInfo),
+    })
       .then(res => res.json())
-      .then(userData => {
-        const userMatched = userData.find(
-          user =>
-            user.email === loginUserInfo.email &&
-            user.password === loginUserInfo.password,
-        );
-
-        if (userMatched) {
-          localStorage.setItem('userEmail', userMatched.email);
-          localStorage.setItem('userNickname', userMatched.nickname);
-          navigate('/join-done');
-        } else {
-          alert('이메일 또는 비밀번호가 일치하지 않습니다.');
-        }
+      .then(data => {
+        console.log(data);
       })
-      .catch(() => {
-        alert('데이터를 불러오는 데 실패했습니다.');
+      .then(accessToken => {
+        if (accessToken) {
+          localStorage.setItem('accessToken', accessToken);
+          navigate('/join-done');
+          let token = localStorage.getItem('accessToken');
+          console.log(token);
+        }
       });
   };
 

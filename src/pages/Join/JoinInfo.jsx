@@ -16,15 +16,16 @@ export default function JoinInfo() {
     password: '',
     passwordCheck: '',
     nickname: '',
+    areaCode: '',
     phoneNumber: '',
-    birthday: '2023-01-01',
+    birthDay: '2023-01-01',
   });
   const joinUserInfoData = {
     email: joinUserInfo.email,
     password: joinUserInfo.password,
     nickname: joinUserInfo.nickname,
     phoneNumber: joinUserInfo.phoneNumber,
-    birthday: joinUserInfo.birthday,
+    birthDay: joinUserInfo.birthDay,
   };
 
   const emailIsVaild =
@@ -38,14 +39,27 @@ export default function JoinInfo() {
   const ButtonClassName = isVaild ? 'loginButton buttonIsVaild' : 'loginButton';
 
   const handleJoin = () => {
+    joinUserInfo.phoneNumber = joinUserInfo.phoneNumber.replace(
+      /(\d{4})(\d{4})/,
+      '$1-$2',
+    );
+    const formattedPhoneNumber =
+      joinUserInfo.areaCode === ''
+        ? `010-${joinUserInfo.phoneNumber}`
+        : `${joinUserInfo.areaCode}-${joinUserInfo.phoneNumber}`;
+    const updatedUserInfo = {
+      ...joinUserInfoData,
+      phoneNumber: formattedPhoneNumber,
+    };
+
     if (isVaild) {
       navigate('/join-done');
-      fetch('data/userData.json', {
+      fetch('http://10.58.52.158:3000/user/signUp', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
         },
-        body: JSON.stringify(joinUserInfoData),
+        body: JSON.stringify(updatedUserInfo),
       }).then();
     } else if (
       !joinUserInfo.email.includes('@') ||
@@ -63,7 +77,7 @@ export default function JoinInfo() {
     setJoinUserInfo(prev => {
       return {
         ...prev,
-        birthday: formattedBirthday,
+        birthDay: formattedBirthday,
       };
     });
   };
@@ -72,22 +86,14 @@ export default function JoinInfo() {
     const { name, value } = e.target;
 
     if (name === 'phoneNumber') {
-      const formattedPhoneNumber = value.replace(
-        /(\d{3})(\d{4})(\d{4})/,
-        '$1-$2-$3',
-      );
       setJoinUserInfo(prev => ({
         ...prev,
-        [name]: formattedPhoneNumber,
+        phoneNumber: value,
       }));
-    } else if (name === 'birthday') {
-      const formattedBirthday = value.replace(
-        /(\d{4})(\d{2})(\d{2})/,
-        '$1-$2-$3',
-      );
+    } else if (name === 'areaCode') {
       setJoinUserInfo(prev => ({
         ...prev,
-        [name]: formattedBirthday,
+        areaCode: value,
       }));
     } else {
       setJoinUserInfo(prev => ({
@@ -158,7 +164,11 @@ export default function JoinInfo() {
           <p className="inputDescriptionRight">선택 사항</p>
         </div>
         <div className="phoneNumber">
-          <select>
+          <select
+            value={joinUserInfo.areaCode}
+            name="areaCode"
+            onChange={handleInputChange}
+          >
             {AREA_CODE.map(areaCode => (
               <option key={areaCode} value={areaCode}>
                 {areaCode}
