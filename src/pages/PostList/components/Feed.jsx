@@ -4,20 +4,24 @@ import CommentItem from './CommentItem';
 import './Feed.scss';
 
 const Feed = ({ feedData, handleRemove }) => {
-  const [feedLikeCount, setFeedLikeCount] = useState(0);
+  const [feedLikeCount, setFeedLikeCount] = useState(feedData.likeCount);
   const [isHeartButtonToggle, setIsHeartButtonToggle] = useState(false);
   const [isShowFeedContent, setIsShowFeedContent] = useState(false);
 
-  const handleHeartToggle = e => {
-    e.stopPropagation();
-
-    if (!isHeartButtonToggle) {
-      setFeedLikeCount(prev => prev + 1);
-      setIsHeartButtonToggle(true);
-    } else if (feedLikeCount > 0) {
-      setFeedLikeCount(prev => prev - 1);
-      setIsHeartButtonToggle(false);
-    }
+  const handleHeartToggle = () => {
+    fetch('/data/data.json', {
+      method: 'POST',
+      headers: {
+        Authorization: localStorage.getItem('access_token'),
+      },
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.message === 'ok') {
+          setIsHeartButtonToggle(prev => !prev);
+          setFeedLikeCount(prev => (isHeartButtonToggle ? prev - 1 : prev + 1));
+        }
+      });
   };
 
   const handleShowFeedContent = () => {
@@ -35,14 +39,14 @@ const Feed = ({ feedData, handleRemove }) => {
               alt="프로필 이미지"
             />
             <p className="userName">
-              <b>{feedData.nickname}</b>
+              <b>{feedData.userName}</b>
             </p>
           </div>
           <div className="feedProfileBoxRight">
             <p className="date">{FormatDate(feedData)}</p>
             <button
               className="deleteBtn"
-              onClick={() => handleRemove(feedData.userId)}
+              onClick={() => handleRemove(feedData.postId)}
             >
               삭제
             </button>

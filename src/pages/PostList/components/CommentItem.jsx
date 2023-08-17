@@ -5,7 +5,7 @@ const CommentItem = ({ feedData, feedDate }) => {
   const [feedComment, setFeedComment] = useState('');
   const [feedCommentList, setFeedCommentList] = useState([]);
 
-  const onCommentChange = e => {
+  const handleCommentChange = e => {
     const { value } = e.target;
     setFeedComment(value);
   };
@@ -15,11 +15,13 @@ const CommentItem = ({ feedData, feedDate }) => {
     if (feedComment === '') return;
     setFeedComment('');
 
-    fetch('주소', {
+    fetch('/data/data.json', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('access_token'),
       },
+      body: JSON.stringify({}),
     })
       .then(res => res.json())
       .then(data => {
@@ -30,10 +32,24 @@ const CommentItem = ({ feedData, feedDate }) => {
   };
 
   const handleDeleteComment = targetId => {
-    const newComment = feedCommentList
-      .slice(0, targetId)
-      .concat(feedCommentList.slice(targetId + 1));
-    setFeedCommentList(newComment);
+    fetch('주소', {
+      method: 'DELETE',
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error(`${res.status}`);
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (!data) alert('삭제를 실패했습니다.');
+        if (data.message === 'ok') {
+          const newComment = feedCommentList
+            .slice(0, targetId)
+            .concat(feedCommentList.slice(targetId + 1));
+          setFeedCommentList(newComment);
+        }
+      });
   };
 
   return (
@@ -44,7 +60,7 @@ const CommentItem = ({ feedData, feedDate }) => {
           placeholder="댓글을 작성해주세요."
           value={feedComment}
           className="feedInput"
-          onChange={onCommentChange}
+          onChange={handleCommentChange}
         />
         <button className="postBtn">댓글 게시</button>
       </form>
@@ -59,7 +75,7 @@ const CommentItem = ({ feedData, feedDate }) => {
             <div className="commentRightBox">
               <div className="commentDetailUserInfo">
                 <p className="userName">
-                  <b>{feedData.nickname}</b>
+                  <b>{feedData.userName}</b>
                 </p>
                 <div className="commentProfileBoxRight">
                   <p className="date">{feedDate}</p>

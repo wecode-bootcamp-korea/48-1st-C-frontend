@@ -4,6 +4,8 @@ import Button from '../../components/Button';
 import Feed from './components/Feed';
 import './PostList.scss';
 
+const noListMessage = '게시글이 없습니다.';
+
 const PostList = () => {
   const [feedsData, setFeedsData] = useState([]);
   const navigate = useNavigate();
@@ -13,30 +15,37 @@ const PostList = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
+        Authorization: localStorage.getItem('access_token'),
       },
     })
       .then(res => res.json())
-      .then(data => setFeedsData(data));
+      .then(data => {
+        const sortedFeedList = data.data.sort(
+          (a, b) => b.createdAt - a.createdAt,
+        );
+        setFeedsData(sortedFeedList);
+      });
   }, []);
 
-  const noListMessage = '게시글이 없습니다.';
-
   const handleRemove = targetId => {
-    // fetch('주소', {
-    //   method: 'DELETE',
-    // })
-    //   .then(res => {
-    //     if (!res.ok) {
-    //       throw new Error('삭제 못해요');
-    //     }
-    //     return res.json();
-    //   })
-    //   .then(data => {
-    //     if (!data) alert('삭제를 실패했습니다.');
-    //     if (data.message === 'ok') {
-    //       setFeedsData(feedsData.filter(data => data.userId !== targetId));
-    //     }
-    //   });
+    fetch('/data/data.json', {
+      method: 'DELETE',
+    })
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('삭제 못해요');
+        }
+        return res.json();
+      })
+      .then(data => {
+        if (!data) alert('삭제를 실패했습니다.');
+        if (data.message === 'ok') {
+          const newFeedList = feedsData.filter(
+            data => data.userId !== targetId,
+          );
+          setFeedsData(newFeedList);
+        }
+      });
   };
 
   const goToCreatePost = () => {
@@ -46,12 +55,12 @@ const PostList = () => {
   return (
     <div className="postListContainer">
       <div className="feedContainer">
-        {!feedsData.data ? (
+        {!feedsData ? (
           <p>{noListMessage}</p>
         ) : (
-          feedsData.data.map(feedData => (
+          feedsData.map(feedData => (
             <Feed
-              key={feedData.userId}
+              key={feedData.postId}
               feedData={feedData}
               handleRemove={handleRemove}
             />
