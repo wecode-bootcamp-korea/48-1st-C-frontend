@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FormatDate } from '../../../utils/FormatDate';
 import CommentItem from './CommentItem';
 import './Feed.scss';
 
 const Feed = ({ feedData, handleRemove }) => {
   const [feedLikeCount, setFeedLikeCount] = useState(feedData.likeCount);
-  const [isHeartButtonToggle, setIsHeartButtonToggle] = useState(false);
+  const [isHeartButtonToggle, setIsHeartButtonToggle] = useState(
+    feedData.isLiked,
+  );
   const [isShowFeedContent, setIsShowFeedContent] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleHeartToggle = e => {
     e.stopPropagation();
@@ -26,15 +31,16 @@ const Feed = ({ feedData, handleRemove }) => {
       });
   };
 
-  const handleShowFeedContent = () => {
+  const handleShowFeedContent = targetId => {
     setIsShowFeedContent(prev => !prev);
   };
 
-  const handleEdit = () => {};
-
   return (
     <>
-      <div className="feed" onClick={handleShowFeedContent}>
+      <div
+        className="feed"
+        onClick={() => handleShowFeedContent(feedData.postId)}
+      >
         <div className="feedProfileBox">
           <div className="feedProfileBoxLeft">
             <img
@@ -48,21 +54,23 @@ const Feed = ({ feedData, handleRemove }) => {
           </div>
           <div className="feedProfileBoxRight">
             <p className="date">{FormatDate(feedData)}</p>
-            <button
-              className="deleteBtn"
-              onClick={e => {
-                e.stopPropagation();
-                handleRemove(feedData.postId);
-              }}
-            >
-              삭제
-            </button>
-            <button
-              className="editBtn"
-              onClick={() => handleEdit(feedData.postId)}
-            >
-              수정
-            </button>
+            <div className={!feedData.isMyPost && 'btnBoxHide'}>
+              <button
+                className="deleteBtn"
+                onClick={e => {
+                  e.stopPropagation();
+                  handleRemove(feedData.postId);
+                }}
+              >
+                삭제
+              </button>
+              <button
+                className="editBtn"
+                onClick={() => navigate('/edit-post')}
+              >
+                수정
+              </button>
+            </div>
           </div>
         </div>
         <div className="feedContentBox">
@@ -71,7 +79,7 @@ const Feed = ({ feedData, handleRemove }) => {
         <div className="feedDescriptionBox">
           <div className="feedDescriptionTop">
             <p>좋아요 {feedLikeCount}</p>
-            <p>댓글 {feedData.comments.length}</p>
+            <p>댓글 {feedData.commentsCount}</p>
           </div>
           <img
             onClick={handleHeartToggle}

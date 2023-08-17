@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Input from '../../../components/Input';
 import './CommentItem.scss';
 
 const CommentItem = ({ feedData, feedDate }) => {
@@ -10,18 +11,30 @@ const CommentItem = ({ feedData, feedDate }) => {
     setFeedComment(value);
   };
 
+  // const getComments = () => {
+  //   const num = feedData.comments.map(el => el.comment);
+  //   for (let i = 0; i < num.length; i++) {
+  //     return num[i];
+  //   }
+  // };
+
   const handleWriteComment = e => {
     e.preventDefault();
     if (feedComment === '') return;
     setFeedComment('');
 
-    fetch('/data/data.json', {
+    fetch('http://10.58.52.158:3000/threads/commentUp', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
         // Authorization: localStorage.getItem('access_token'),
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyLCJlbWFpbCI6InRob21wc29uQGdtYWlsLmNvbSIsImlhdCI6MTY5MjI1MzIwMH0.g4rFX5-jmpIee6AQSVCDHJURVqbdT3hmIsVmfSh6EP4',
       },
-      // body: JSON.stringify({}),
+      body: JSON.stringify({
+        content: feedComment,
+        threadId: feedData.postId,
+      }),
     })
       .then(res => res.json())
       .then(data => {
@@ -53,11 +66,11 @@ const CommentItem = ({ feedData, feedDate }) => {
   return (
     <>
       <form className="inputForm" onSubmit={handleWriteComment}>
-        <input
+        <Input
+          className="feedInput"
           type="text"
           placeholder="댓글을 작성해주세요."
           value={feedComment}
-          className="feedInput"
           onChange={handleCommentChange}
         />
         <button className="postBtn">댓글 게시</button>

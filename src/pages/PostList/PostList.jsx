@@ -25,8 +25,14 @@ const PostList = () => {
   }, []);
 
   const handleRemove = targetId => {
-    fetch('/data/data.json', {
+    fetch('http://10.58.52.158:3000/threads/contentDelete', {
       method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        // Authorization: localStorage.getItem('access_token'),
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjIyLCJlbWFpbCI6InRob21wc29uQGdtYWlsLmNvbSIsImlhdCI6MTY5MjI1MzIwMH0.g4rFX5-jmpIee6AQSVCDHJURVqbdT3hmIsVmfSh6EP4',
+      },
       body: JSON.stringify({
         postId: targetId,
       }),
