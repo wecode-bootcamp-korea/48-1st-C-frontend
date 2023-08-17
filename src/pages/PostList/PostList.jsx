@@ -15,37 +15,36 @@ const PostList = () => {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('access_token'),
+        // Authorization: localStorage.getItem('access_token'),
       },
     })
       .then(res => res.json())
       .then(data => {
-        const sortedFeedList = data.data.sort(
-          (a, b) => b.createdAt - a.createdAt,
-        );
-        setFeedsData(sortedFeedList);
+        setFeedsData(data.data);
       });
   }, []);
 
   const handleRemove = targetId => {
     fetch('/data/data.json', {
       method: 'DELETE',
-    })
-      .then(res => {
-        if (!res.ok) {
-          throw new Error('삭제 못해요');
-        }
-        return res.json();
-      })
-      .then(data => {
-        if (!data) alert('삭제를 실패했습니다.');
-        if (data.message === 'ok') {
-          const newFeedList = feedsData.filter(
-            data => data.userId !== targetId,
-          );
-          setFeedsData(newFeedList);
-        }
-      });
+      body: JSON.stringify({
+        postId: targetId,
+      }),
+    });
+    // .then(res => {
+    //   if (!res.ok) {
+    //     throw new Error(`${res.status} error`);
+    //   }
+    //   return res.json();
+    // })
+    // .then(data => {
+    //   if (data.message === 'ok') {
+    //     const newFeedList = feedsData.filter(
+    //       data => data.postId !== targetId,
+    //     );
+    //     setFeedsData(newFeedList);
+    //   }
+    // });
   };
 
   const goToCreatePost = () => {

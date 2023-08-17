@@ -8,11 +8,13 @@ const Feed = ({ feedData, handleRemove }) => {
   const [isHeartButtonToggle, setIsHeartButtonToggle] = useState(false);
   const [isShowFeedContent, setIsShowFeedContent] = useState(false);
 
-  const handleHeartToggle = () => {
+  const handleHeartToggle = e => {
+    e.stopPropagation();
     fetch('/data/data.json', {
       method: 'POST',
       headers: {
-        Authorization: localStorage.getItem('access_token'),
+        'Content-Type': 'application/json;charset=utf-8',
+        // Authorization: localStorage.getItem('access_token'),
       },
     })
       .then(res => res.json())
@@ -27,6 +29,8 @@ const Feed = ({ feedData, handleRemove }) => {
   const handleShowFeedContent = () => {
     setIsShowFeedContent(prev => !prev);
   };
+
+  const handleEdit = () => {};
 
   return (
     <>
@@ -46,9 +50,18 @@ const Feed = ({ feedData, handleRemove }) => {
             <p className="date">{FormatDate(feedData)}</p>
             <button
               className="deleteBtn"
-              onClick={() => handleRemove(feedData.postId)}
+              onClick={e => {
+                e.stopPropagation();
+                handleRemove(feedData.postId);
+              }}
             >
               삭제
+            </button>
+            <button
+              className="editBtn"
+              onClick={() => handleEdit(feedData.postId)}
+            >
+              수정
             </button>
           </div>
         </div>

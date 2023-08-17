@@ -19,25 +19,23 @@ const CommentItem = ({ feedData, feedDate }) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('access_token'),
+        // Authorization: localStorage.getItem('access_token'),
       },
-      body: JSON.stringify({}),
+      // body: JSON.stringify({}),
     })
       .then(res => res.json())
       .then(data => {
-        console.log('data', data);
+        setFeedCommentList(cur => [data, ...cur]);
       });
-
-    setFeedCommentList(cur => [feedComment, ...cur]);
   };
 
   const handleDeleteComment = targetId => {
-    fetch('주소', {
+    fetch('/data/data.json', {
       method: 'DELETE',
     })
       .then(res => {
         if (!res.ok) {
-          throw new Error(`${res.status}`);
+          throw new Error(`${res.status} error`);
         }
         return res.json();
       })
