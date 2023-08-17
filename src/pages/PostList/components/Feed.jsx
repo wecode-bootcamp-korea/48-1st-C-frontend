@@ -54,7 +54,7 @@ const Feed = ({ feedData, handleRemove }) => {
           </div>
           <div className="feedProfileBoxRight">
             <p className="date">{FormatDate(feedData)}</p>
-            <div className={!feedData.isMyPost && 'btnBoxHide'}>
+            <div className={feedData.isMyPost ? 'btnBoxShow' : 'btnBoxHide'}>
               <button
                 className="deleteBtn"
                 onClick={e => {
