@@ -32,7 +32,7 @@ const Login = () => {
       .then(data => {
         if (data) {
           localStorage.setItem('accessToken', data.accessToken);
-          navigate('/join-done');
+          navigate('/post-list');
         }
       });
   };
