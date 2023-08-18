@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Input from '../../../components/Input';
+import Button from '../../../components/Button';
 import './CommentItem.scss';
 
 const CommentItem = ({ feedData, feedDate }) => {
@@ -10,13 +11,6 @@ const CommentItem = ({ feedData, feedDate }) => {
     const { value } = e.target;
     setFeedComment(value);
   };
-
-  // const getComments = () => {
-  //   const num = feedData.comments.map(el => el.comment);
-  //   for (let i = 0; i < num.length; i++) {
-  //     return num[i];
-  //   }
-  // };
 
   const handleWriteComment = e => {
     e.preventDefault();
@@ -90,13 +84,17 @@ const CommentItem = ({ feedData, feedDate }) => {
                 </p>
                 <div className="commentProfileBoxRight">
                   <p className="date">{feedDate}</p>
-                  <button
-                    className="deleteBtn"
-                    onClick={() => handleDeleteComment(index)}
+                  <div
+                    className={feedData.isMyPost ? 'btnBoxShow' : 'btnBoxHide'}
                   >
-                    삭제
-                  </button>
-                  <button className="editBtn">수정</button>
+                    <button
+                      className="deleteBtn"
+                      onClick={() => handleDeleteComment(index)}
+                    >
+                      삭제
+                    </button>
+                    <button className="editBtn">수정</button>
+                  </div>
                 </div>
               </div>
               <p className="userCommentBox">{elements}</p>

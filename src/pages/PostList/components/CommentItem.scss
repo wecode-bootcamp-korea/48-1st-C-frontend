@@ -88,6 +88,14 @@
         font-size: 14px;
         cursor: pointer;
       }
+
+      .btnBoxHide {
+        display: none;
+      }
+
+      .btnBoxShow {
+        display: block;
+      }
     }
   }
 }
