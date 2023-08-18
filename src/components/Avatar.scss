@@ -1,0 +1,45 @@
+.baseStyle {
+  display: flex;
+  border-radius: 9999px;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgContainer {
+  background-color: white;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.smallContainer {
+  width: 36px;
+  height: 36px;
+}
+
+.smallImg {
+  width: 34px;
+  height: 34px;
+  padding: 1.6px;
+}
+
+.mediumContainer {
+  width: 44px;
+  height: 44px;
+}
+
+.mediumImg {
+  width: 42px;
+  height: 42px;
+  padding: 1.6px;
+}
+
+.largeContainer {
+  width: 64px;
+  height: 64px;
+}
+
+.largeImg {
+  width: 62px;
+  height: 62px;
+  padding: 3.2px;
+}
