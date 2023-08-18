@@ -1,0 +1,84 @@
+.container {
+  height: 80vh;
+  padding: 30px 25px 30px 20px;
+  overflow-y: scroll;
+}
+
+.wrap {
+  display: flex;
+}
+
+.mainContentContainer {
+  display: flex;
+  flex-direction: column;
+  padding-left: 15px;
+}
+
+.userName {
+  padding: 2px 0 10px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.threadInputArea {
+  width: 460px;
+  height: 500px;
+  border: 1px solid #e0e0e0;
+  border-radius: 15px;
+  resize: none;
+  padding: 15px;
+
+  &:focus {
+    outline: none;
+    border: 2px solid skyblue;
+    border-radius: 15px;
+  }
+  &:disabled {
+    background-color: white;
+  }
+}
+
+.horizonLine {
+  border: 0.5px solid #e0e0e0;
+  margin-bottom: 25px;
+}
+
+.postBtn {
+  width: 120px;
+  height: 55px;
+  border: 1px solid #2d71f7;
+  border-radius: 6px;
+  background-color: #2d71f7;
+  color: white;
+  &:hover {
+    background-color: #083e7f;
+    border: 1px solid #083e7f;
+  }
+  &:disabled {
+    background-color: #cccccc;
+    border: 1px solid #cccccc;
+  }
+}
+
+.delBtn {
+  width: 120px;
+  height: 55px;
+  border: 1px solid #2d71f7;
+  background-color: white;
+  border-radius: 6px;
+  color: #2d71f7;
+  &:hover {
+    background-color: #083e7f;
+    border: 1px solid #083e7f;
+    color: white;
+  }
+  &:disabled {
+    background-color: #cccccc;
+    border: 1px solid #cccccc;
+  }
+}
+
+.clickBtn {
+  display: flex;
+  justify-content: space-between;
+}
