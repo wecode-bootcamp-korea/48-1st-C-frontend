@@ -14,14 +14,14 @@ const Login = () => {
 
   const emailIsVaild =
     loginUserInfo.email.includes('@') && loginUserInfo.email.includes('.');
-  const passwordIsVaild = loginUserInfo.password.length >= 3;
+  const passwordIsVaild = loginUserInfo.password.length >= 8;
 
   const isVaild = emailIsVaild && passwordIsVaild;
 
   const buttonClassName = isVaild ? 'loginButton buttonIsVaild' : 'loginButton';
 
   const handleLogin = () => {
-    fetch('http://10.58.52.158:3000/user/signIn', {
+    fetch('http://10.58.52.93:3000/user/signin', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -30,14 +30,9 @@ const Login = () => {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
-      })
-      .then(accessToken => {
-        if (accessToken) {
-          localStorage.setItem('accessToken', accessToken);
+        if (data) {
+          localStorage.setItem('accessToken', data.accessToken);
           navigate('/join-done');
-          let token = localStorage.getItem('accessToken');
-          console.log(token);
         }
       });
   };

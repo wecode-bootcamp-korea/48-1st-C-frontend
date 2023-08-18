@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import BackButtonContainer from './BackButtonContainer';
 import Birthday from './Birthday';
 import Button from '../../components/Button';
-import './Join.scss';
 import Input from '../../components/Input';
+import './JoinInfo.scss';
 
 const AREA_CODE = ['010', '011', '016', '017', '018', '019'];
 
@@ -18,14 +18,14 @@ export default function JoinInfo() {
     nickname: '',
     areaCode: '',
     phoneNumber: '',
-    birthDay: '2023-01-01',
+    birthday: '2023-01-01',
   });
   const joinUserInfoData = {
     email: joinUserInfo.email,
     password: joinUserInfo.password,
     nickname: joinUserInfo.nickname,
     phoneNumber: joinUserInfo.phoneNumber,
-    birthDay: joinUserInfo.birthDay,
+    birthday: joinUserInfo.birthday,
   };
 
   const emailIsVaild =
@@ -54,7 +54,7 @@ export default function JoinInfo() {
 
     if (isVaild) {
       navigate('/join-done');
-      fetch('http://10.58.52.158:3000/user/signUp', {
+      fetch('http://10.58.52.93:3000/user/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -77,7 +77,7 @@ export default function JoinInfo() {
     setJoinUserInfo(prev => {
       return {
         ...prev,
-        birthDay: formattedBirthday,
+        birthday: formattedBirthday,
       };
     });
   };

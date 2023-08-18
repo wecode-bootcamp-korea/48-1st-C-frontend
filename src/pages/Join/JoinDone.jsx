@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import BackButtonContainer from './BackButtonContainer';
 import Button from '../../components/Button';
-import './Join.scss';
+import './JoinInfo.scss';
 import './JoinDone.scss';
 
 export default function JoinDone() {
